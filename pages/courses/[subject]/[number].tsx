@@ -2,6 +2,7 @@ import client from '../../../apollo-client'
 import { gql } from '@apollo/client'
 import type { CalendarCourse } from '../../../interfaces'
 import CourseCard from '../../../components/CourseCard'
+import Head from 'next/head'
 
 const Course = ({ course }: { course: CalendarCourse }) => {
     return <div className='
@@ -12,6 +13,9 @@ const Course = ({ course }: { course: CalendarCourse }) => {
         items-center
         p-8
     '>
+        <Head>
+            <title>{course.subject} {course.number}</title>
+        </Head>
         <CourseCard
             course={course}
         />
