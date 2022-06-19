@@ -38,7 +38,7 @@ export async function getServerSideProps({ params }: { params: { subject: string
         }
       `,
         variables: {
-            subject: params.subject,
+            subject: params.subject.toUpperCase(),
             number: params.number
         }
     })
