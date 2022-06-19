@@ -8,3 +8,10 @@ export type User = {
   id: number
   name: string
 }
+
+export type CalendarCourse = {
+  name: string,
+  number: string,
+  description: string,
+  subject: string,
+}
