@@ -10,7 +10,6 @@ const CourseCard = (props: Props) => {
   return (
     <div className='
         bg-white
-        w-4/5
         rounded-lg
         shadow-md
         p-4
@@ -34,8 +33,9 @@ const CourseCard = (props: Props) => {
             <a className='
                 mt-2
                 hover:underline
+                w-max
             '>
-                See more
+                View details...
             </a>
         </Link>
     </div>

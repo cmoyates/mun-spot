@@ -14,12 +14,11 @@ const StyledInput = (props: Props) => {
                 px-2
                 py-1
                 text-xl
-                rounded-sm
+                rounded-md
                 shadow-md
             '
             onChange={(e) => props.setQuery(e.target.value)}
             value={props.query}
-            onSubmit={()=>console.log("sdfsdf")}
         />
     </div>
   )

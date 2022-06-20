@@ -1,22 +1,30 @@
 import React, {useState} from 'react';
 import StyledInput from '../../components/StyledInput';
-import type { CalendarCourse } from '../../interfaces/index';
+import type { CalendarCourse, SubjectSelection } from '../../interfaces/index';
 import client from '../../apollo-client';
 import { gql } from '@apollo/client';
 import CourseList from '../../components/CourseList';
+import {ChevronDownIcon, ChevronUpIcon} from "@heroicons/react/solid";
+import SubjectSelector from '../../components/SubjectSelector';
+import Router from 'next/router'
 
 type Props = {}
 
 const index = (props: Props) => {
 
     const [query, setQuery] = useState<string>("");
-    const [courses, setCourses] = useState<CalendarCourse[]>([])
+    const [courses, setCourses] = useState<CalendarCourse[]>([]);
+    const [showTools, setShowTools] = useState<boolean>(false);
+    const [subjectFilter, setSubjectFilter] = useState<SubjectSelection>({
+        text: "All",
+        code: ""
+    })
 
     const search = async () => {
         const { data } = await client.query({
             query: gql`
-            query CourseSearch($query: String!) {
-                courseSearch(query: $query) {
+            query CourseSearch($query: String!, $subject: String) {
+                courseSearch(query: $query, subject: $subject) {
                     _id
                     name
                     number
@@ -25,21 +33,28 @@ const index = (props: Props) => {
                 }
             }
           `,
-            variables: {query}
+            variables: {query, subject: showTools ? subjectFilter.code : undefined}
         })
         setCourses(data.courseSearch);
     }
 
     return (
-        <div className='
-            bg-slate-200
-            flex
-            flex-col
-            justify-start
-            items-center
-            p-8
-            min-h-screen
-        '>
+        <div 
+            style={{
+                "justifyContent": courses.length > 0 ? "start" : "center"
+            }}
+            className='
+                bg-slate-200
+                flex
+                flex-col
+                justify-start
+                items-center
+                py-8
+                px-96
+                min-h-screen
+                overflow-y-auto
+            '
+        >
             <div>
                 <h1 className='
                     text-5xl
@@ -47,32 +62,58 @@ const index = (props: Props) => {
                     mb-2
                 '>Course Search</h1>
                 <form 
-                className='
-                    flex
-                    flex-row
-                    space-x-2
-                '
+                
                 onSubmit={(e)=>e.preventDefault()}
                 >
-                    <StyledInput
-                        query={query}
-                        setQuery={setQuery}
-                    />
-                    <button 
-                        className='
-                            bg-blue-500
-                            rounded-sm
-                            shadow-md
-                            px-2
-                            py-1
-                            text-white
-                            font-semibold
-                            text-lg
-                        '
-                        onClick={search}
-                    >
-                        Search
-                    </button>
+                    <div className='
+                        flex
+                        flex-row
+                        space-x-2
+                        items-end
+                    '>
+                        <StyledInput
+                            query={query}
+                            setQuery={setQuery}
+                        />
+                        <button 
+                            className='
+                                bg-blue-500
+                                rounded-md
+                                shadow-md
+                                px-2
+                                py-1
+                                text-white
+                                font-semibold
+                                text-lg
+                            '
+                            onClick={search}
+                        >
+                            Search
+                        </button>
+                        <div 
+                            className='
+                                flex
+                                flex-row
+                                items-center
+                                cursor-pointer
+                                w-min
+                            '
+                            onClick={()=>setShowTools(!showTools)}
+                        >
+                            <span className='text-sm'>Tools</span>
+                            {showTools 
+                                ? <ChevronUpIcon className='w-4 h-4'/> 
+                                : <ChevronDownIcon className='w-4 h-4'/>}
+                        </div>
+                    </div>
+                    <div style={{display: showTools ? "flex" : "none"}}>
+                        <SubjectSelector
+                            label='Subject Filter'
+                            subject={subjectFilter}
+                            setSubject={setSubjectFilter}
+                            includeAll
+                        />
+                    </div>
                 </form>
                 <CourseList courses={courses}/>
             </div>

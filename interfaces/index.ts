@@ -15,3 +15,8 @@ export type CalendarCourse = {
   description: string,
   subject: string,
 }
+
+export type SubjectSelection = {
+  code: string,
+  text: string
+}
