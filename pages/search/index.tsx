@@ -41,31 +41,20 @@ const index = (props: Props) => {
 
     return (
         <Layout title='Course Search'>
-            <div
-                style={{
-                    "justifyContent": courses.length > 0 ? "start" : "center"
-                }}
-                className='
+            <div className='
                 flex
                 flex-col
                 justify-start
                 items-center
-                py-8
-                px-96
-                h-inherit
                 flex-grow
-            '
-            >
+            '>
                 <div>
                     <h1 className='
                     text-5xl
                     font-semibold
                     mb-2
                 '>Course Search</h1>
-                    <form
-
-                        onSubmit={(e) => e.preventDefault()}
-                    >
+                    <form onSubmit={(e) => e.preventDefault()}>
                         <div className='
                         flex
                         flex-row

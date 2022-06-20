@@ -1,16 +1,16 @@
 import React, { useContext } from 'react'
-import { DarkModeContext } from '../contexts/DarkModeContext';
 import {SunIcon, MoonIcon} from "@heroicons/react/outline"
+import { useTheme } from "next-themes";
 
 type Props = {}
 
 const DarkModeToggleButton = (props: Props) => {
 
-    const {darkMode, setDarkMode} = useContext(DarkModeContext);
+    const { theme, setTheme } = useTheme()
 
     return (
-        <div className='cursor-pointer' onClick={()=>{setDarkMode(!darkMode)}}>
-            {darkMode ? <SunIcon className='w-5'/> : <MoonIcon className='w-5'/>}
+        <div className='cursor-pointer' onClick={()=>{setTheme(theme === 'dark' ? 'light' : 'dark')}}>
+            {theme === 'dark' ? <SunIcon className='w-5'/> : <MoonIcon className='w-5'/>}
         </div>
     )
 }

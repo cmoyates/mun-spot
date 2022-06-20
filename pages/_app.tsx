@@ -1,12 +1,12 @@
 import "../styles/globals.css";
 import type {AppProps} from "next/app";
-import DarkModeProvider from "../contexts/DarkModeContext";
+import { ThemeProvider } from "next-themes";
 
 const MyApp = ({Component, pageProps}: AppProps) => {
     return (
-        <DarkModeProvider>
+        <ThemeProvider attribute="class" defaultTheme="system">
             <Component {...pageProps}/>
-        </DarkModeProvider>
+        </ThemeProvider>
     )
 }
 

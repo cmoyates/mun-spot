@@ -51,7 +51,14 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         <DarkModeToggleButton/>
       </nav>
     </header>
-    {children}
+    <div className='
+      py-8
+      px-96
+      h-inherit
+      flex-grow
+    '>
+      {children}
+    </div>
   </div>
 }
 
