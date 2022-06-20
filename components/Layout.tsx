@@ -37,7 +37,9 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
     dark:bg-gray-800
     
   '>
-      <h1 className='text-2xl font-semibold'>MUNSpot</h1>
+      <Link href="/">
+        <h1 className='text-2xl font-semibold cursor-pointer'>MUNSpot</h1>
+      </Link>
       <nav className='flex flex-row items-center space-x-4'>
         <Link href="/">
           <a>Home</a>
