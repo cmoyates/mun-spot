@@ -1,5 +1,6 @@
 import React from 'react'
 import type {CalendarCourse} from "../interfaces/index";
+import Link from "next/link";
 
 type Props = {
     course: CalendarCourse
@@ -13,6 +14,8 @@ const CourseCard = (props: Props) => {
         rounded-lg
         shadow-md
         p-4
+        flex
+        flex-col
     '>
         <h2 className='
             text-2xl
@@ -27,6 +30,14 @@ const CourseCard = (props: Props) => {
             </span> 
             {` ${props.course.description}`}
         </p>
+        <Link href={`/courses/${props.course.subject}/${props.course.number}`}>
+            <a className='
+                mt-2
+                hover:underline
+            '>
+                See more
+            </a>
+        </Link>
     </div>
   )
 }
