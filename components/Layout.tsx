@@ -24,20 +24,19 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <header className='
-    flex
-    flex-row
-    items-center
-    justify-between
-    py-2
-    px-4
-    sticky 
-    top-0 
-    z-50
-    shadow-lg
-    bg-white
-    dark:bg-gray-800
-    
-  '>
+      flex
+      flex-row
+      items-center
+      justify-between
+      py-2
+      px-4
+      sticky 
+      top-0 
+      z-50
+      shadow-lg
+      bg-white
+      dark:bg-gray-800
+    '>
       <Link href="/">
         <h1 className='text-2xl font-semibold cursor-pointer'>MUNSpot</h1>
       </Link>
@@ -55,8 +54,10 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
       </nav>
     </header>
     <div className='
-      py-8
-      px-96
+      sm:py-8
+      py-4
+      sm:px-96
+      px-2
       flex-grow
       flex
       flex-col

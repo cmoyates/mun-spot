@@ -10,7 +10,8 @@ const IndexPage = () => (
       items-center
     '>
       <h1 className='
-        text-8xl
+        sm:text-8xl
+        text-6xl
         font-semibold
       '>
         MUNSpot

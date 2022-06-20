@@ -50,44 +50,45 @@ const index = (props: Props) => {
             '>
                 <div>
                     <h1 className='
-                    text-5xl
-                    font-semibold
-                    mb-2
-                '>Course Search</h1>
+                        sm:text-5xl
+                        text-3xl
+                        font-semibold
+                        mb-2
+                    '>Course Search</h1>
                     <form onSubmit={(e) => e.preventDefault()}>
                         <div className='
-                        flex
-                        flex-row
-                        space-x-2
-                        items-end
-                    '>
+                            flex
+                            flex-row
+                            space-x-2
+                            items-end
+                        '>
                             <StyledInput
                                 query={query}
                                 setQuery={setQuery}
                             />
                             <button
                                 className='
-                                bg-blue-500
-                                rounded-md
-                                shadow-md
-                                px-2
-                                py-1
-                                text-white
-                                font-semibold
-                                text-lg
-                            '
+                                    bg-blue-500
+                                    rounded-md
+                                    shadow-md
+                                    px-2
+                                    py-1
+                                    text-white
+                                    font-semibold
+                                    text-lg
+                                '
                                 onClick={search}
                             >
                                 Search
                             </button>
                             <div
                                 className='
-                                flex
-                                flex-row
-                                items-center
-                                cursor-pointer
-                                w-min
-                            '
+                                    flex
+                                    flex-row
+                                    items-center
+                                    cursor-pointer
+                                    w-min
+                                '
                                 onClick={() => setShowTools(!showTools)}
                             >
                                 <span className='text-sm'>Tools</span>

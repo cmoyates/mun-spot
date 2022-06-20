@@ -10,7 +10,8 @@ const StyledInput = (props: Props) => {
     <div>
         <input 
             className='
-                w-96
+                sm:w-96
+                w-full
                 px-2
                 py-1
                 text-xl

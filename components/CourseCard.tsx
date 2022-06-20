@@ -18,11 +18,12 @@ const CourseCard = (props: Props) => {
         flex-col
     '>
         <h2 className='
-            text-2xl
+            sm:text-2xl
+            text-xl
             font-semibold
             mb-2
         '>{props.course.subject} {props.course.number}: {props.course.name}</h2>
-        <p>
+        <p className='text-sm sm:text-base'>
             <span className='
                 font-semibold
             '>
@@ -35,6 +36,8 @@ const CourseCard = (props: Props) => {
                 mt-2
                 hover:underline
                 w-max
+                text-sm 
+                sm:text-base
             '>
                 View details...
             </a>
