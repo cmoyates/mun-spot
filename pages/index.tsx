@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Layout from '../components/Layout'
 
 const IndexPage = () => (
@@ -13,7 +12,9 @@ const IndexPage = () => (
       <h1 className='
         text-8xl
         font-semibold
-      '>MUNSpot</h1>
+      '>
+        MUNSpot
+      </h1>
     </div>
   </Layout>
 )

@@ -24,6 +24,7 @@ const SubjectSelector = (props: Props) => {
             <Listbox value={props.subject} onChange={props.setSubject}>
                 <Listbox.Button className='
                     bg-white
+                    dark:bg-gray-700
                     text-left
                     rounded-md
                     p-2
@@ -34,6 +35,7 @@ const SubjectSelector = (props: Props) => {
                 </Listbox.Button>
                 <Listbox.Options className="
                     bg-white
+                    dark:bg-gray-700
                     rounded-sm
                     px-2
                     shadow-md
