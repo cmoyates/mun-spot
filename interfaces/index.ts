@@ -20,3 +20,13 @@ export type SubjectSelection = {
   code: string,
   text: string
 }
+
+export type BannerOffering = {
+  prof_full: string,
+  campus: string,
+  rmp: {
+    rating: string,
+    rating_count: string,
+  }
+  notes: string[]
+}

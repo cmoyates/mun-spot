@@ -14,8 +14,9 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
   flex-col
   bg-slate-200
   dark:bg-gray-900
-  flex-grow
   dark:text-white
+  min-h-screen
+  h-auto
 '>
     <Head>
       <title>{title}</title>
@@ -56,8 +57,10 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
     <div className='
       py-8
       px-96
-      h-inherit
       flex-grow
+      flex
+      flex-col
+      justify-center
     '>
       {children}
     </div>

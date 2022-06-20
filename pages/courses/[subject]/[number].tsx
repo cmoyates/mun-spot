@@ -1,25 +1,19 @@
 import client from '../../../apollo-client'
 import { gql } from '@apollo/client'
-import type { CalendarCourse } from '../../../interfaces'
-import CourseCard from '../../../components/CourseCard'
+import type { CalendarCourse, BannerOffering } from '../../../interfaces'
 import Head from 'next/head'
 import Layout from '../../../components/Layout'
+import CourseDetailsCard from '../../../components/CourseDetailsCard'
 
-const Course = ({ course }: { course: CalendarCourse }) => {
-    return <Layout>
+const Course = ({ course, offerings }: { course: CalendarCourse, offerings: BannerOffering[] }) => {
+    return <Layout title={`${course.subject} ${course.number}`}>
         <div className='
             flex
             flex-col
             justify-start
             items-center
-            p-8
         '>
-            <Head>
-                <title>{course.subject} {course.number}</title>
-            </Head>
-            <CourseCard
-                course={course}
-            />
+            <CourseDetailsCard course={course} offerings={offerings}/>
         </div>
     </Layout>
 }
@@ -29,16 +23,25 @@ export default Course
 export async function getServerSideProps({ params }: { params: { subject: string, number: string } }) {
     const { data } = await client.query({
         query: gql`
-        query Query($number: String, $subject: String) {
-          getCourseDetails(number: $number, subject: $subject) {
-            _id
-            name
-            number
-            description
-            subject
-          }
-        }
-      `,
+            query Query($number: String, $subject: String) {
+                getCourseDetails(number: $number, subject: $subject) {
+                    _id
+                    name
+                    number
+                    description
+                    subject
+                }
+                getOfferings(number: $number, subject: $subject) {
+                    prof_full
+                    campus
+                    rmp {
+                    rating
+                    rating_count
+                    }
+                    notes
+                }
+            }
+        `,
         variables: {
             subject: params.subject.toUpperCase(),
             number: params.number
@@ -47,7 +50,8 @@ export async function getServerSideProps({ params }: { params: { subject: string
 
     return {
         props: {
-            course: data.getCourseDetails[0]
+            course: data.getCourseDetails[0],
+            offerings: data.getOfferings
         }
     }
 }
