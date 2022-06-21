@@ -31,7 +31,7 @@ const CourseCard = (props: Props) => {
             </span> 
             {` ${props.course.description}`}
         </p>
-        <Link href={`/courses/${props.course.subject}/${props.course.number}`}>
+        <Link href={`/courses/${props.course.subject.toLowerCase()}/${props.course.number}`}>
             <a className='
                 mt-2
                 hover:underline
