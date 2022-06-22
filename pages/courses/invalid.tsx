@@ -12,7 +12,7 @@ const Invalid = (props: Props) => {
             justify-start
             items-center
         '>
-            <h2 className='text-3xl'>This course doesn't exist</h2>
+            <h2 className='text-3xl'>This course doesn&apos;t exist</h2>
         </div>
     </Layout>
   )

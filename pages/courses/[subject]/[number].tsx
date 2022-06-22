@@ -12,7 +12,7 @@ const Course = ({ course, offerings }: { course: CalendarCourse | null, offering
 
     useEffect(() => {
         if (!course) router.push("/courses/invalid")
-    }, [])
+    }, [course, router])
     
     if (!course) return ""
     
