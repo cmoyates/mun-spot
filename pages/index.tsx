@@ -1,23 +1,25 @@
 import Layout from '../components/Layout'
 
-const IndexPage = () => (
-  <Layout title="MUNSpot">
-    <div className='
-      h-full
-      flex
-      flex-col
-      justify-center
-      items-center
-    '>
-      <h1 className='
-        sm:text-8xl
-        text-6xl
-        font-semibold
+const IndexPage = () => {
+  return (
+    <Layout title="MUNSpot">
+      <div className='
+        h-full
+        flex
+        flex-col
+        justify-center
+        items-center
       '>
-        MUNSpot
-      </h1>
-    </div>
-  </Layout>
-)
+        <h1 className='
+          sm:text-8xl
+          text-6xl
+          font-semibold
+        '>
+          MUNSpot
+        </h1>
+      </div>
+    </Layout>
+  )
+}
 
 export default IndexPage

@@ -27,7 +27,7 @@ const CourseDetailsCard = (props: Props) => {
                 <span className='
                     font-semibold
                 '>
-                    "{props.course.name}"
+                    &quot;{props.course.name}&quot;
                 </span> 
                 {` ${props.course.description}`}
             </p>

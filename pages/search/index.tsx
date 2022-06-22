@@ -6,12 +6,9 @@ import { gql } from '@apollo/client';
 import CourseList from '../../components/CourseList';
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 import SubjectSelector from '../../components/SubjectSelector';
-import Router from 'next/router'
 import Layout from '../../components/Layout';
 
-type Props = {}
-
-const index = (props: Props) => {
+const Index: React.FC = () => {
 
     const [query, setQuery] = useState<string>("");
     const [courses, setCourses] = useState<CalendarCourse[]>([]);
@@ -113,4 +110,4 @@ const index = (props: Props) => {
     )
 }
 
-export default index
+export default Index

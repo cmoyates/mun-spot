@@ -1,7 +1,6 @@
 import client from '../../../apollo-client'
 import { gql } from '@apollo/client'
 import type { CalendarCourse, BannerOffering } from '../../../interfaces'
-import Head from 'next/head'
 import Layout from '../../../components/Layout'
 import CourseDetailsCard from '../../../components/CourseDetailsCard'
 
