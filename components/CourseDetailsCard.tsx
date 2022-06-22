@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type {CalendarCourse, BannerOffering} from "../interfaces/index";
+import StyledSelector from './StyledSelector';
+import CourseAttributesDisclosure from './CourseAttributesDisclosure';
 import OfferingDisclosure from './OfferingDisclosure';
+import { campusData } from "../utils/campus-data";
 
 type Props = {
     course: CalendarCourse,
@@ -8,6 +11,9 @@ type Props = {
 }
 
 const CourseDetailsCard = (props: Props) => {
+
+    const [campus, setCampus] = useState<string>("St. John's");
+
     return (
         <div className='
             bg-white
@@ -34,11 +40,26 @@ const CourseDetailsCard = (props: Props) => {
             <div className='
                 mt-2
             '>
-                {/*<OfferingDisclosure label='Fall 2021'>
-                    {props.offerings.map((item, index) => (
-                        <p key={index}>{item.prof_full} {item.rmp.rating} with {item.rmp.rating_count} ratings</p>
-                    ))}
-                </OfferingDisclosure>*/}
+                <CourseAttributesDisclosure attributes={props.course.attributes}/>
+            </div>
+            <div className='
+                flex 
+                flex-row 
+                justify-between 
+                items-center
+                mt-4
+            '>
+                <h3 className='text-xl font-semibold'>Offerings</h3>
+                <StyledSelector value={campus} setValue={setCampus} data={campusData}/>
+            </div>
+            <div>
+                {props.offerings.filter((item)=>item.campus === campus).length ? props.offerings.filter((item)=>item.campus === campus).map((item, index) => <div key={index} className='mt-2'>
+                    <OfferingDisclosure offering={item}/>
+                </div>) : <p className='
+                    text-center
+                '>
+                    No recent offerings    
+                </p>}
             </div>
         </div>
       )

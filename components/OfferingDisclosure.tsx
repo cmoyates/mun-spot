@@ -1,25 +1,26 @@
 import React from 'react'
 import { Disclosure } from '@headlessui/react'
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
+import { ChevronRightIcon } from "@heroicons/react/solid";
+import { BannerOffering } from '../interfaces';
+import { termData } from "../utils/term-data";
+import Link from 'next/link';
 
 type Props = {
-    label: string
+    offering: BannerOffering
 }
 
-const OfferingDisclosure: React.FC<Props> = ({children, label}) => {
-  return (
-    <div className='
+const OfferingDisclosure: React.FC<Props> = ({ offering }) => {
+    return (
+        <div className='
         w-full
         rounded-md
-        outline-1
-        outline-slate-300
-        dark:outline-gray-700
-        outline
+        dark:bg-gray-700
+        bg-slate-100
     '>
-        <Disclosure>
-        {({ open }) => (
-            <>
-                <Disclosure.Button className='
+            <Disclosure>
+                {({ open }) => (
+                    <>
+                        <Disclosure.Button className='
                     w-full
                     text-left
                     rounded-md
@@ -28,19 +29,32 @@ const OfferingDisclosure: React.FC<Props> = ({children, label}) => {
                     flex-row
                     justify-between
                     items-center
-                    dark:bg-gray-700
-                    bg-slate-300
-                    shadow-sm
+                    dark:bg-gray-600
+                    bg-slate-200
+                    shadow-md
                 '>
-                    <p>{label}</p>
-                    {open ? <ChevronUpIcon className='w-4'/> : <ChevronDownIcon className='w-4'/>}
-                </Disclosure.Button>
-                <Disclosure.Panel className='p-2'>{children}</Disclosure.Panel>
-            </>
-        )}
-        </Disclosure>
-    </div>
-  )
+                            <p className='ml-1 font-semibold'>
+                                {termData[offering.term - 1]} {offering.year}
+                            </p>
+                            <ChevronRightIcon
+                                className={`${open ? "transform rotate-90" : ""} w-6`}
+                            />
+                        </Disclosure.Button>
+                        <Disclosure.Panel className='p-2 ml-1'>
+                            <b>Prof: </b>
+                            {offering.prof_full ? offering.rmp.rating !== "N/A" ? <Link href={`https://www.ratemyprofessors.com/ShowRatings.jsp?tid=${offering.rmp.legacy_id}`}>
+                                <a className='hover:underline underline-offset-1' target="_blank">
+                                    <span>{offering.prof_full} ({offering.rmp.rating}/5 with {offering.rmp.rating_count} ratings)</span>
+                                </a>
+                            </Link>
+                                : <span>{offering.prof_full} (Not on RateMyProf)</span>
+                                : <span> Unannounced</span>}
+                        </Disclosure.Panel>
+                    </>
+                )}
+            </Disclosure>
+        </div>
+    )
 }
 
 export default OfferingDisclosure

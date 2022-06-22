@@ -34,6 +34,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
       top-0 
       z-50
       shadow-lg
+      dark:shadow-2xl
       bg-white
       dark:bg-gray-800
     '>

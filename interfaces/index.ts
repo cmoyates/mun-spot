@@ -1,12 +1,13 @@
-// You can include shared interfaces/types in a separate file
-// and then use them in any component by importing them. For
-// example, to import the interface below do:
-//
-// import { User } from 'path/to/interfaces';
-
-export type User = {
-  id: number
-  name: string
+export type CourseAttributes = {
+  AR?: string,
+  CH?: string,
+  CO?: string,
+  CR?: string,
+  LC?: string,
+  LH?: string,
+  OR?: string,
+  PR?: string,
+  UL?: string
 }
 
 export type CalendarCourse = {
@@ -14,6 +15,7 @@ export type CalendarCourse = {
   number: string,
   description: string,
   subject: string,
+  attributes: CourseAttributes
 }
 
 export type SubjectSelection = {
@@ -27,6 +29,9 @@ export type BannerOffering = {
   rmp: {
     rating: string,
     rating_count: string,
+    legacy_id: string
   }
-  notes: string[]
+  notes: string[],
+  term: number,
+  year: number
 }
