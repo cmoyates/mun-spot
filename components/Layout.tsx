@@ -42,9 +42,6 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         <h1 className='text-2xl font-semibold cursor-pointer'>MUNSpot</h1>
       </Link>
       <nav className='flex flex-row items-center space-x-4'>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
         <Link href="/search">
           <a>Search</a>
         </Link>
