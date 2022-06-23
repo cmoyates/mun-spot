@@ -10,8 +10,10 @@
 - [x] Dark mode
 - [ ] Responsive design
 - [ ] Course / offerings detail page
-- - [ ] Show course details
-- - [ ] Show offerings
+- - [x] Show course attributes
+- - [ ] Make the attributes understandable
+- - [x] Show offerings
 - - [ ] Design
 - [ ] Weekly schedule builder???
 - [ ] Get more ideas
+- [ ] Figure out what to do with the landing page
