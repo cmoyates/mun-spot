@@ -5,7 +5,7 @@
 - - [x] Functionality
 - - [ ] Design
 - - [x] Subject filtering
-- - [ ] Able to go back to previous search
+- - [x] Able to go back to previous search
 - [ ] Find course by select subject and number
 - [x] Dark mode
 - [ ] Responsive design

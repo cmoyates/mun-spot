@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StyledInput from '../../components/StyledInput';
 import type { CalendarCourse, SubjectSelection } from '../../interfaces/index';
 import client from '../../apollo-client';
@@ -7,8 +7,18 @@ import CourseList from '../../components/CourseList';
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 import SubjectSelector from '../../components/SubjectSelector';
 import Layout from '../../components/Layout';
+import { useRouter } from 'next/router';
 
 const Index: React.FC = () => {
+
+    const router = useRouter();
+
+    useEffect(() => {
+        const term = router.query.term ? router.query.term.toString() : "";
+        setQuery(term)
+        search(term)
+    }, [router.query.term])
+    
 
     const [query, setQuery] = useState<string>("");
     const [courses, setCourses] = useState<CalendarCourse[]>([]);
@@ -18,7 +28,12 @@ const Index: React.FC = () => {
         code: ""
     })
 
-    const search = async () => {
+    const search = async (searchTerm: string) => {
+        if (!searchTerm) {
+            setCourses([]);
+            router.push("", undefined, { shallow: true });
+            return;
+        }
         const { data } = await client.query({
             query: gql`
             query CourseSearch($query: String!, $subject: String) {
@@ -30,10 +45,11 @@ const Index: React.FC = () => {
                     subject
                 }
             }
-          `,
-            variables: { query, subject: showTools ? subjectFilter.code : undefined }
+            `,
+            variables: { query: searchTerm, subject: showTools ? subjectFilter.code : undefined }
         })
         setCourses(data.courseSearch);
+        router.push(`?term=${searchTerm}`, undefined, { shallow: true })
     }
 
     return (
@@ -74,7 +90,7 @@ const Index: React.FC = () => {
                                     font-semibold
                                     text-lg
                                 '
-                                onClick={search}
+                                onClick={()=>router.push(`?term=${query}`, undefined, { shallow: true })}
                             >
                                 Search
                             </button>
