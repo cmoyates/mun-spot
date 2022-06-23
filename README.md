@@ -13,7 +13,9 @@
 - - [x] Show course attributes
 - - [ ] Make the attributes understandable
 - - [x] Show offerings
+- - [ ] Organize offerings by term
 - - [ ] Design
 - [ ] Weekly schedule builder???
 - [ ] Get more ideas
 - [ ] Figure out what to do with the landing page
+- [ ] Figure out what to do with the about page
