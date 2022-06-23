@@ -6,7 +6,7 @@ import CourseDetailsCard from '../../../components/CourseDetailsCard'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-const Course = ({ course, offerings }: { course: CalendarCourse | null, offerings: BannerOffering[] }) => {
+const Course = ({ course, offerings }: { course: CalendarCourse | null, offerings: BannerOffering[][] }) => {
 
     const router = useRouter();
 
@@ -45,6 +45,8 @@ export async function getServerSideProps({ params }: { params: { subject: string
                     term
                     year
                     notes
+                    section
+                    type
                 }
                 getCourseDetails(subject: $subject, number: $number) {
                     name

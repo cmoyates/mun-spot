@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import type {CalendarCourse, BannerOffering} from "../interfaces/index";
 import StyledSelector from './StyledSelector';
 import CourseAttributesDisclosure from './CourseAttributesDisclosure';
-import OfferingDisclosure from './OfferingDisclosure';
 import { campusData } from "../utils/campus-data";
 
 type Props = {
     course: CalendarCourse,
-    offerings: BannerOffering[]
+    offerings: BannerOffering[][]
 }
 
 const CourseDetailsCard = (props: Props) => {
@@ -51,15 +50,6 @@ const CourseDetailsCard = (props: Props) => {
             '>
                 <h3 className='text-xl font-semibold'>Offerings</h3>
                 <StyledSelector value={campus} setValue={setCampus} data={campusData}/>
-            </div>
-            <div>
-                {props.offerings.filter((item)=>item.campus === campus).length ? props.offerings.filter((item)=>item.campus === campus).map((item, index) => <div key={index} className='mt-2'>
-                    <OfferingDisclosure offering={item}/>
-                </div>) : <p className='
-                    text-center
-                '>
-                    No recent offerings    
-                </p>}
             </div>
         </div>
       )

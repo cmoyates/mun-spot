@@ -2,13 +2,14 @@ import React from 'react'
 import { Disclosure } from '@headlessui/react'
 import { ChevronRightIcon } from "@heroicons/react/solid";
 import { BannerOffering } from '../interfaces';
-import Link from 'next/link';
+import { termNames } from "../utils/term-data";
+import OfferingDisclosure from './OfferingDisclosure';
 
 type Props = {
-    offering: BannerOffering
+    offeringArray: BannerOffering[]
 }
 
-const OfferingDisclosure: React.FC<Props> = ({ offering }) => {
+const OfferingGroup: React.FC<Props> = ({offeringArray}) => {
     return (
         <div className='
             w-full
@@ -33,26 +34,16 @@ const OfferingDisclosure: React.FC<Props> = ({ offering }) => {
                             shadow-md
                         '>
                             <p className='ml-1 font-semibold'>
-                                {offering.type} {offering.section}: {offering.prof_full || "Unavailable"}
+                                {termNames[offeringArray[0].term - 1]} {offeringArray[0].year}
                             </p>
                             <ChevronRightIcon
                                 className={`${open ? "transform rotate-90" : ""} w-6`}
                             />
                         </Disclosure.Button>
-                        <Disclosure.Panel className='p-2 ml-1'>
-                            <div>
-                                <b>Prof: </b>
-                                {offering.prof_full ? offering.rmp.rating !== "N/A" ? <Link href={`https://www.ratemyprofessors.com/ShowRatings.jsp?tid=${offering.rmp.legacy_id}`}>
-                                    <a className='hover:underline underline-offset-1' target="_blank">
-                                        <span>{offering.prof_full} ({offering.rmp.rating}/5 with {offering.rmp.rating_count} ratings)</span>
-                                    </a>
-                                </Link>
-                                    : <span>{offering.prof_full} (Not on RateMyProf)</span>
-                                    : <span> Unavailable</span>}
-                            </div>
-                            {offering.notes.length ? <div>
-                                <b>Notes: </b> {offering.notes.length}
-                            </div> : ""}
+                        <Disclosure.Panel className='p-2 space-y-1'>
+                            {offeringArray.map((item, index) => <div key={index}>
+                                <OfferingDisclosure offering={item}/>
+                            </div>)}
                         </Disclosure.Panel>
                     </>
                 )}
@@ -61,4 +52,4 @@ const OfferingDisclosure: React.FC<Props> = ({ offering }) => {
     )
 }
 
-export default OfferingDisclosure
+export default OfferingGroup
