@@ -1,31 +1,35 @@
-import React from 'react';
-import { Disclosure } from '@headlessui/react';
+import React from "react";
+import { Disclosure } from "@headlessui/react";
 import { ChevronRightIcon } from "@heroicons/react/solid";
 
-type Props = {}
+type Props = {
+    label: string;
+};
 
-const InlineDisclosure: React.FC<Props> = ({children}) => {
+const InlineDisclosure: React.FC<Props> = ({ children, label }) => {
     return (
         <Disclosure>
             {({ open }) => (
                 <>
-                    <Disclosure.Button className='
+                    <Disclosure.Button
+                        className="
                         flex
-                        flex-row
-                        justify-between
-                        items-center
                         w-full
-                    '>
-                        <p className='font-semibold'>
-                            Previous Offerings
-                        </p>
+                        flex-row
+                        items-center
+                        justify-between
+                    "
+                    >
+                        <p className="font-semibold">{label}</p>
                         <ChevronRightIcon
-                            className={`${open ? "transform rotate-90" : ""} w-6`}
+                            className={`${
+                                open ? "rotate-90 transform" : ""
+                            } w-6`}
                         />
                     </Disclosure.Button>
                     {open && (
                         <div>
-                            <Disclosure.Panel>
+                            <Disclosure.Panel className="pt-1">
                                 {children}
                             </Disclosure.Panel>
                         </div>
@@ -33,7 +37,7 @@ const InlineDisclosure: React.FC<Props> = ({children}) => {
                 </>
             )}
         </Disclosure>
-    )
-}
+    );
+};
 
-export default InlineDisclosure
+export default InlineDisclosure;
